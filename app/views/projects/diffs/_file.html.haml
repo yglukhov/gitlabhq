@@ -20,6 +20,10 @@
             = check_box_tag nil, 1, false, class: "js-toggle-diff-line-wrap"
             Wrap text
         &nbsp;
+        %label
+          = check_box_tag nil, 1, false, class: "js-toggle-diff-expansion"
+          Expand
+        &nbsp;
         = link_to "#", class: "js-toggle-diff-comments btn btn-small" do
           %i.icon-chevron-down
           Diff comments

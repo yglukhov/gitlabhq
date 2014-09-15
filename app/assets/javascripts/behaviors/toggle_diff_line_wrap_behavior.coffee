@@ -11,4 +11,5 @@ $ ->
       diffFile.addClass("diff-wrap-lines")
     else
       diffFile.removeClass("diff-wrap-lines")
+    $(document.body).trigger("sticky_kit:recalc")
 

@@ -15,7 +15,7 @@
 #= require jquery.atwho
 #= require jquery.scrollTo
 #= require jquery.blockUI
-#= require jquery.sticky
+#= require jquery.sticky-kit.min
 #= require turbolinks
 #= require jquery.turbolinks
 #= require bootstrap

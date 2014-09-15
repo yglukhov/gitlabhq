@@ -35,13 +35,34 @@ class Diff
         target.parent().replaceWith(response)
       )
     ).ready =>
-      $(".diff-header").sticky {responsiveWidth:true, getWidthFrom: ".diff-file"}
+      diffHeaders = $(".diff-header")
+      diffHeaders.stick_in_parent()
+
+    self = @
+ 
+    $("body").on "click", ".js-toggle-diff-expansion", (e) ->
+      diffFile = $(@).closest(".diff-file")
+      if $(@).is(":checked")
+        diffFile.addClass("diff-file-expanded")
+        self.updateElementPositions(diffFile)
+      else
+        diffFile.removeClass("diff-file-expanded")
+        diffFile.css("position", "static").css("left", "0px").css("width", "100%")
+      $(document.body).trigger("sticky_kit:recalc")
+
+     $(window).resize =>
+       @updateElementPositions($(".diff-file-expanded"))
+       $(document.body).trigger("sticky_kit:recalc")
 
   lineNumbers: (line) ->
     return ([0, 0]) unless line.children().length
     lines = line.children().slice(0, 2)
     line_numbers = ($(l).attr('data-linenumber') for l in lines)
     (parseInt(line_number) for line_number in line_numbers)
+
+  updateElementPositions: (e) ->
+    e.offset(left: 0)
+    e.width($(window).width())
 
 
 @Diff = Diff
